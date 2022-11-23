@@ -12,7 +12,7 @@ class DataValidationError(Exception):
     """Used for an data validation errors when deserializing"""
 
 
-class Account(db.Model):
+class AccountDB(db.Model):
     """ Class that represents an Account """
     
     id = db.Column(db.Integer, primary_key=True)
@@ -34,20 +34,20 @@ class Account(db.Model):
         for key, value in data.items():
             setattr(self, key, value)
 
-    def create(self):
+    def create_account(self):
         """Creates an Account in the database"""
         logger.info("Creating %s", self.name)
         db.session.add(self)
         db.session.commit()
 
-    def update(self):
+    def update_account(self):
         """Updates an Account in the database"""
         logger.info("Saving %s", self.name)
         if not self.id:
             raise DataValidationError("Update called with empty ID field")
         db.session.commit()
 
-    def delete(self):
+    def delete_account(self):
         """Removes an Account from the database"""
         logger.info("Deleting %s", self.name)
         db.session.delete(self)
