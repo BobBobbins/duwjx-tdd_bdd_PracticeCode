@@ -13,7 +13,9 @@ class DataValidationError(Exception):
 
 
 class AccountDB(db.Model):
-    """ Class that represents an Account """
+    """ Class that represents an Account.
+    See https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#quickstart
+    """
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
